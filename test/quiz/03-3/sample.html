@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+
+    <div id="app">
+        <child-component v-bind:abc="message"></child-component>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.10/dist/vue.js"></script>
+    <script>
+        // 전역 컴포넌트 child-component에서 props 속성을 전달해서 하위 컴포넌트에서 상위 컴포넌트의 메시지를 출력해보기
+        Vue.component('child-component', {
+            props : ['abc'],
+            template : '<div>{{ abc }}</div>',
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                message: 'Hello Vue! passed from Parent Component',
+            }
+            
+        })
+    </script>
+</body>
+</html>
