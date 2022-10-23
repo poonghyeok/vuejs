@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Directive</title>
+</head>
+
+<body>
+    <!-- 많이 사용되는 디렉티브 다루기! -->
+    <div id="app">
+        <a v-if="flag">do it! Vue js!</a>
+        <ul>
+            <li v-for="system in systems">{{ system + '가 출력되었습니다!'}}</li>
+        </ul>
+        <p v-show="flag">v-show 사용하기</p>
+        <h5 v-bind:id="uid">v-bind 사용하기</h5>
+        <button v-on:click="popupAlert">v-on:event 사용하기</button>
+        <button v-on:click="flagHide">flag 값 method에서 변경해보기</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el:"#app",
+           data: {
+                flag: true,
+                systems: ['android','ios','window'],
+                uid: 10
+           },
+            methods: {
+                // methods임 method라고 쓰지말 것
+                popupAlert : function(){
+                    alert('경고창표시');
+                    return;
+                    // return alert('경고창표시');와 alert('경고창표시') return; 의 차이가 있나 
+                },
+                flagHide : function(){
+                    this.flag = !this.flag;
+                    return;
+                    //성공
+                }
+            }
+        })
+    </script>
+</body>
+</html>

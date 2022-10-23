@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>java script 표현에서 주의할 점!</title>
+</head>
+<body>
+    <div id="app">
+        <!-- {{var a = 10}} js 영역(?)이긴 하나 선언문은 사용할 수 없다. 안되게 생기긴 했음. -->
+        <!-- {{ if(true){} }}  if를 활용한 분기구문도 사용할 수 없다. 조건문 자체가 사용이 안된다긴 보다는 중괄호 때문이 아닐까 생각해본다. 답은 3항 연산자  -->
+        {{ true ? 100 : 0 }}
+    
+        <!-- {{ message.split('').reverse().join('') }} 이와 같이 복잡한 연산은 바로 하지 않고 인스턴스에서한 다음에 return 값을 받아서 사용해야 한다. 클린한 코드를 위해선 당연해 보인다.-->
+        {{reverseMessage}}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            data: {
+                message : 'Hello  Vue js!'
+            },
+            computed :{
+                // computed는 데이터 속성을 자동으로 계산해준다. 미리 계산을 해놓으므로 캐싱(caching)의 효과도 볼 수 있다. 
+                reverseMessage : function(){
+                    return this.message.split('').reverse().join('');
+                }
+            }
+        })
+    </script>
+</body>
+</html>

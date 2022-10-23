@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이벤트처리 요소접근</title>
+</head>
+<body>
+    <!-- 이벤트 처리하면서 요소에 접근해보기 -->
+    <div id="app">
+        <!-- <button v-on:click="clickBtn">클릭</button> -->
+        <input type="text" v-on:click="clickBtn" />
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el:'#app',
+            methods:{
+                clickBtn :(event) => {
+                    //function에 arg를 전달하지 않아도 callback parameter로 요소에 접근할 수 있다. 
+                    console.log(event);
+                    return;
+                },
+            }
+        })
+    </script>
+</body>
+</html>
