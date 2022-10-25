@@ -3,7 +3,10 @@
         <transition-group name="list" tag="ul">
             <li v-for="(todoItem,index) in propsdata" :key="todoItem" class="shadow">
                 <i class="checkBtn fas fa-check" aria-hidden="true"></i>
-                {{ todoItem }}
+                <input type="text" v-bind:value="todoItem" class="todoItemInput" :readonly="!editOn">
+                <span class="editBtn" type="button" @click="editTodo(todoItem, index)">
+                    <i class="fas fa-edit" aria-hidden="true"></i>
+                </span>
                 <span class="removeBtn" type="button" @click="removeTodo(todoItem, index)">
                     <i class="far fa-trash-alt" aria-hidden="true"></i>
                 </span>
@@ -17,9 +20,17 @@ export default{
     methods : {
         removeTodo(todoItem,index){
             this.$emit('removeTodo',todoItem,index);
+        },
+        editTodo(){
+            this.editOn = !this.editOn;
         }
     },
     props : ['propsdata'],
+    data(){
+        return {
+            editOn : false
+        }
+    }
 }
 </script>
 
@@ -46,11 +57,18 @@ export default{
         line-height: 45px;
         color : #62acde;
         margin-right: 5px;
+        cursor: pointer;
     }
     
     .removeBtn{
         margin-left: auto;
         color : #de4343;
+        cursor: pointer;
+    }
+    .editBtn{
+        margin-left: auto;
+        color : #8ed366;
+        cursor: pointer;
     }
 
     .list-enter-active, .list-leave-active{
@@ -59,5 +77,9 @@ export default{
     .list-enter, .list-leave-to{
         opacity: 0;
         transform: translateY(30px);
+    }
+
+    .todoItemInput{
+        border : 0px solid;
     }
 </style>

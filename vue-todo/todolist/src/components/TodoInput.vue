@@ -33,7 +33,7 @@ export default{
                 this.$emit('addTodo', value);
                 this.clearInput();
             }else{
-                this.showModal = !this.showModal;
+                this.showModal = true;
             }
         },
         clearInput(){
@@ -41,7 +41,7 @@ export default{
         }
     },
     components : {
-        Modal: Modal
+        Modal   : Modal
     }
 }
 </script>
@@ -66,6 +66,7 @@ export default{
         display: block;
         width: 3rem;
         border-radius: 0 5px 5px 0;
+        cursor: pointer;
     }
     .addBtn{
         color: white;
