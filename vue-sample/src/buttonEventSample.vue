@@ -24,6 +24,16 @@ export default {
     }
   },
 }
+
+// reverseMsg(){
+//       this.message = this.message.split("").reverse().join("");
+//     }
+    
+// reverseMsg : () => {
+//   this.message ~~ 
+// }
+
+// 위 아래 무슨 차이지 vue3 version은 아래처럼 못쓰는건가
 </script>
 
 <style>

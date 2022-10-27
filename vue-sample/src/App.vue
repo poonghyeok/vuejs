@@ -1,9 +1,18 @@
 <template>
   <div>
-    <div v-on:mouseover="showTooltip" v-on:mouseleave="showTooltip" >잠시 마우스를 올려두면 타이틀이 보입니다.</div>
-    <span v-if="tooltip">제가 타이틀입니다.</span>
-    <div v-bind:class="toggle ? 'basic' : 'toggle'" v-on:click="toggleOn">저는 원래 검정색입니다. 한번 클릭하면 빨간 색으로 바뀝니다.</div>
-    <div v-bind:class="dymColor == 'green' ? 'green' : 'blue'" v-on:click="changeColor">저는 초록색입니다. 한번 클릭하면 파란색으로 바뀝니다.</div>
+    <p>
+      <span v-bind:title="message">
+        여기다가 마우스를 올려놓으면 잠시 뒤에 툴팁을 볼 수 있습니다.
+      </span>
+    </p>
+
+    <p v-bind:class="{ red: isRed }" v-on:click="toggleRed">
+    저는 원래 검점색입니다. 클릭을 하게 되면 빨간 색으로 변하게 되죠. 
+    </p>
+
+    <p v-bind:style="{ color : color }" v-on:click="toggleColor">
+      저는 녹색과 파란색을 왔다 갔다 합니다. 클릭해보세요. 
+    </p>
   </div>
 </template>
 
@@ -12,46 +21,28 @@ export default {
   name: 'app',
   data(){
     return {
-      toggle : false,
-      dymColor : 'green',
-      tooltip : false,
+      message : "hello vuejs!",
+      color : 'green',
+      isRed : false,
     };
   }
   ,
   methods : {
-    showTooltip(){
-      setTimeout(() => {
-        this.tooltip = !this.tooltip;
-      }, 500)
-      
+    toggleRed(){
+      this.isRed = !this.isRed;
     },
-    toggleOn(){
-      this.toggle = !this.toggle;
+    toggleColor(){
+      this.color = (this.color === 'green' ? 'green' : 'blue');   
     }
-    ,
-    changeColor(){
-      if(this.dymColor == 'green'){
-        this.dymColor = 'blue';
-      }else{
-        this.dymColor = 'green';
-      }
-    }
-  },
+  }
 }
+
 
 // https://vuejs.org/examples/#attribute-bindings
 </script>
 
 <style>
-.toggle{
-  color : red;
-}
-
-.green{
-  color : green;
-}
-
-.blue{
-  color : blue;
-}
+  .red{
+    color : red;
+  }
 </style>
