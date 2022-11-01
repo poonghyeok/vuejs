@@ -1,11 +1,13 @@
 <template>
   <div>
-    <h3>Text Input</h3>
-    <h3>Checkbox</h3>
-    <h3>Multi Checkbox</h3>
-    <h3>Radio</h3>
-    <h3>Select</h3>
-    <h3>Multi Select</h3>
+    <button @click="toggleList">Toggle List</button>
+    <button @click="pushNumber">Push Number</button>
+    <button @click="popNumber">Pop Number</button>
+    <button @click="reverseNumber">Reverse Number</button>
+    <ul v-if="isListShow">
+      <li v-for="(data, index) in dataList" :key="index">{{data}}</li>
+      <span v-if="dataList.length === 0">data is empty</span>
+    </ul>
   </div>
 </template>
 
