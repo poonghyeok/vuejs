@@ -1,48 +1,29 @@
 <template>
-  <div>
-    <h3>Text Input</h3>
-    <h3>Checkbox</h3>
-    <h3>Multi Checkbox</h3>
-    <h3>Radio</h3>
-    <h3>Select</h3>
-    <h3>Multi Select</h3>
-  </div>
+  <ol>
+    <TodoItem v-for="item in groceryList" :todo="item" :key="item.id"></TodoItem>
+  </ol>
 </template>
 
 <script>
+import TodoItem from './TodoItem.vue';
+
 export default {
-  name: 'app',
+  components :{
+    TodoItem
+  },
   data(){
-    return {
-      isListShow : false,
-      dataList : [],
-      num : 0,
-    };
-  }
-  ,
-  methods : {
-    toggleList(){
-      this.isListShow = !this.isListShow;
-    },
-    pushNumber(){
-      this.dataList.push(this.num++);
-    },
-    popNumber(){
-      this.dataList.pop();
-      this.num--;
-    },
-    reverseNumber(){
-      this.dataList.reverse();
-    },
-  }
+    return{
+      groceryList : [
+        { id : 0, text : 'Vegetables'},
+        { id : 1, text : 'Cheese'},
+        { id : 2, text : 'Whatever else humans are supposed to eat'},
+      ]
+    }
+  },
 }
 
 
 // https://vuejs.org/examples/#attribute-bindings
 </script>
 
-<style>
-  .red{
-    color : red;
-  }
-</style>
+

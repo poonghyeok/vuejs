@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <child-component v-bind:propsdata="message" v-on:change-msg="changeMsgOrigin"></child-component>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.2/dist/vue.js"></script>  
+    <script>
+        Vue.component('child-component',{
+            props : ['propsdata'],
+            template : '<div>{{propsdata}}<button v-on:click="changeBtn">change</button></div>',
+            methods : {
+                'changeBtn' : function(){
+                    this.$emit('change-msg');
+                }
+            }
+        })
+        new Vue({
+            el : '#app',
+            data : function(){
+                return {
+                    message : 'hello vuejs!',
+                };
+            },
+            methods: {
+                'changeMsgOrigin' : function(){
+                    console.log('changeMsgOrigin!');
+                    this.message = 'hello vuejs 3.0!';
+                },
+            },
+        })
+
+    </script>
+</body>
+</html>
