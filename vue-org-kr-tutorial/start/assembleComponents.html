@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="favoriteSongs">
+        <ol>
+            <song-info v-for="item in songs" v-bind:list="item" v-bind:key="item.id">
+                
+            </song-info>
+        </ol>
+    </div>
+    
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        const playList = {
+            data(){
+                return {
+                    songs: [
+                        { id: 0, text: 'Boogie on&on'},
+                        { id: 1, text: 'aqua man'},
+                        { id: 2, text: 'vibra'},
+                    ]
+                }
+            },
+        }
+
+        const app = Vue.createApp(playList)
+
+        app.component('song-info',{
+            props : ['list'],
+            template : `<li>{{ list.text }}</li>`
+        })
+
+        app.mount('#favoriteSongs')
+
+    </script>
+</body>
+</html>

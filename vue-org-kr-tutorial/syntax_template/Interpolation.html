@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <span v-once>Never changed : {{message}}</span>
+        <!-- v-once를 사용하여 보간된 변수가 최초 값에서 변하지 않게 할 수도 있다.! -->
+        <span>Normal : {{message}}</span>
+
+        <button @click="changeMsg">문구 변경하기</button>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+    
+    const appTest = {
+        data(){
+            return {
+                message : 'hello vuejs!',
+            }
+        },
+        methods : {
+            changeMsg : function(){
+                this.message = this.message.split('').reverse().join('');
+            }
+        }
+    }
+
+    const app = Vue.createApp(appTest);
+    app.mount('#app');
+    
+
+    </script>
+</body>
+</html>

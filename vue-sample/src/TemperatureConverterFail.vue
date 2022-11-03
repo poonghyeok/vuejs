@@ -9,11 +9,12 @@
 export default {
   data(){
     return {
-      degree : 0,
+      c: 0,
+      f: 32,
     };
   },
   methods : {
-    
+    setC(e, )
   },
   computed : {
     getFahDeg(){

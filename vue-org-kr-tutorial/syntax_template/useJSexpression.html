@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <h5>이중중괄호(Mustaches)에는 javascript 표현식도 사용이 가능합니다.</h5>
+        {{number + 1}} {{ok ? "OKGO" : "CANNOT GO"}} {{message.split('').reverse().join('')}}
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>    
+    <script>
+
+        const jsTest = {
+            data(){
+                return {
+                    ok : true,
+                    number : 1,
+                    message : 'im gonna home'
+                }
+            },
+            
+        }
+
+        var app = Vue.createApp(jsTest);
+        app.mount('#app')
+
+    </script>
+</body>
+</html>

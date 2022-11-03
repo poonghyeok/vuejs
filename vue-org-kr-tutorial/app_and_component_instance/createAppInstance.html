@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- createApp에 전달된 옵션은 루트 컴포넌트를 구성하는데 사용된다. 이 컴포넌트는 어플리케이션을 mount 할 때, 렌더링의 시작점으로 사용 -->
+    <div>
+        
+    </div>
+
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        
+        const app =  Vue.createApp({});
+        app.component('SearchInput', SearchInputComponent)
+        app.directive('focus', FocusDirective)
+        app.use(LocalPlugin)
+
+        Vue.createApp({})
+            .component('SearchInput', SearchInputComponent)
+            .directive('focus', FocusDirective)
+            .use(LocalPlugin)
+            
+        Vue.createApp({
+            data(){
+                return { count : 1 }
+            },
+            created() {
+                console.log('count is : ' + this.count);
+            }
+        })
+        
+    </script>
+</body>
+</html>

@@ -1,25 +1,24 @@
 <template>
-  <div>
-    <input type="text" v-model="degree"> Celcius =
-    <input type="text" v-model="getFahDeg"> Fahrenheit
-  </div>
+  
 </template>
 
 <script>
 export default {
   data(){
     return {
-      degree : 0,
-    };
-  },
-  methods : {
-    
+      names : ['손, 흥민', '황, 희찬', '김, 민재'],
+      selectd : '',
+      prefix : '',
+      first : '',
+      last : '',
+    }
   },
   computed : {
-    getFahDeg(){
-      return this.degree * (9/5) + 32;
+    filteredNames(){
+      return this.names.filter( (name) => name.startsWith(this.prefix))
     }
-  }
+  },
+  
 }
 
 </script>
