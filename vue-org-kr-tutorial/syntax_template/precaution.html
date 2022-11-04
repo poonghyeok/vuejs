@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Precaution : dynamice Parameter</title>
+</head>
+<body>
+    <p> :[key] 와 같이 동적 전달인자를 사용할 수도 있다고 했다.</p>
+    <b>그렇다면 key 자리에 어떤 값들을 넣어서 동적 전달인자로 활용할 수 있을까</b>
+    <ol>
+        <li>a v-bind:['foo' + bar ]="value" => 이와 같이 HTML 속성명에는 공백이나 따옴표가 유효하지 않기 때문에 동적인자로 사용할 수 없다. 연산이 필요하다거나 식이 복잡하다면 인스턴스의 computed 에서 생성한다.</li>
+        <li>속성명은 다 소문자로 취급된다. 즉, camel 표기법은 소용이 없으므로 그냥 소문자로 사용하자</li>
+    </ol>
+    
+</body>
+</html>

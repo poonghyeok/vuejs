@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>data and methods</title>
+</head>
+<body>
+    <h4>Data 속성</h4>
+    <ol>
+        <li> 컴포넌트의 data 옵션은 함수다. > 컴포넌트 인스턴스 생성할 때 data 함수 호출 > data 함수가 하나의 객체 반환 > Vue가 반응형 시스템으로 return 받은 객체를 wrapping 해서 인스턴스에 $data 로 저장</li>
+        <p>
+            const vm = app.mount("#app"); 와 같이 컴포넌트 인스턴스를 변수에 담았다면
+            <br>
+            <b>vm.$data.data명</b>
+            <b>vm.data</b>
+            와 같이 두가지 방법으로 접근할 수 있다. 
+            
+        
+        </p>
+    </ol>
+    <hr>
+    <h4>Data 속성 코드 실습</h4>
+    <div id="app">
+
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>    
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    count : 4,
+                }
+            }
+        })
+        
+        const vm = app.mount('#app');
+
+        console.log(vm.$data.count);
+        console.log(vm.count);
+
+        vm.count = 5;
+        console.log(vm.$data.count);
+
+        vm.$data.count = 6;
+        console.log(vm.count);
+    </script>
+</body>
+</html>

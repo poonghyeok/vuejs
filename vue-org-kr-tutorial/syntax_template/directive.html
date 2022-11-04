@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h5>디렉티브의 역할은 표현식의 값이 변경될 때 발생하는 부수효과들을 반응적으로 DOM에 적용하는 것이다. </h5>
+    <p>v-on 과 v-for를 제외하고 v- 가 붙은 것들을 디렉티브라고 한다.</p>
+
+    <div id="app">
+        {{seen}}
+        <p v-if="seen">내가 보입니까</p>
+        <hr>
+        <p> v-bind directive는 반응적으로 HTML 속성( id, class 등 )을 갱신하는데 사용한다.</p>
+        <span>is show : {{isShow}}</span>
+        <span v-bind:class="{on:isShow, mod : seen}"> span의 클래스를 boolean state를 통해 갱신할 수 있다. </span>
+        <hr>
+        <p>DOM 이벤트를 수신하는 on directive도 있다.</p>
+
+        <a v-on:[eventName]="doSomething">동적 전달인자 v-on:[eventName]과 같이 eventName에 대한 값을 동적으로 전달하고 이벤트 핸들린을 할 수 있다. <br>
+        단 eventname과 같은 것은 인스턴스를 정의할 때 들어가야한다. </a>
+        <hr>
+
+        <p>수식어 : 수식어는 점으로 표기되는 특수 접미사, 디렉티브를 특별한 방법으로 바인딩 해야함 > 나중에 배움. </p>
+        <form v-on:submit.prevent="onSubmit">...<form>
+    </div>
+    
+    
+    <script src="https://unpkg.com/vue@next"></script>    
+    <script>
+        const directiveTest = {
+            data(){
+                return {
+                    seen : true,
+                    isShow : true,
+                    eventName : 'click',
+                    
+                };
+            },
+            methods : { 
+                doSomething : function(){
+                    console.log('what ever you are');
+                }
+            }
+        }
+
+        var app = Vue.createApp(directiveTest);
+        app.mount('#app');
+
+    </script>
+</body>
+</html>

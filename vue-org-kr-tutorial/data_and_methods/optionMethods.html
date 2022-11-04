@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Methods option</title>
+</head>
+<body>
+    <h4>컴포넌트 인스턴스에 methods 옵션 사용하기</h4>
+    <ol>
+        <li>Vue는 methods 객체 안에서 컴포넌트 인스턴스를 항사 참조할 수 있도록 this 값을 유지시켜준다. <br> 근데 화살표함수나 function을 쓰게 되면 this가 function의 this로 변경되기 때문에 화살표함수나 function을 쓰지 않도록 한다.</li>
+        <li>template 내부에서 접근할 수 있다.</li>
+        <p>button @click="method명" 으로 쓸 수 있는 이유다.</p>
+        <p> 템플릿 어디에서든 method를 호출할 수 있다. 근데 직접호출하는 것보다 computed 쓰는게 낫다.</p>
+        <p> js를 지원하는 템플릿 어디서든 method를 사용할 수 있다.</p>
+    </ol>
+    <div id="app">
+        <span :title="toTitleDate(date)">
+            {{formatDate(date)}}
+        </span>
+    </div>
+
+
+    <script src="https://unpkg.com/vue@next"></script>    
+    <script>
+        const app = Vue.crateApp({
+            data (){
+                return {
+                    count : 4,
+                }
+            },
+            methods : {
+                increment(){
+                    this.count++;
+                }
+            }
+        })
+
+        const vm = app.mount('#app');
+
+        console.log(vm.count);
+
+        vm.increment();
+        console.log('vm.increment 실행 후 : ' + vm.count);
+
+        
+    </script>
+</body>
+</html>

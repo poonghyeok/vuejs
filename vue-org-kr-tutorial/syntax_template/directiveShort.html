@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Short</title>
+</head>
+<body>
+    <div id="app">
+        <h4>v-bind에서 v-는 : 로 줄일 수 있다. </h4>
+        <p> v-bind:href="url"</p>
+        <p> :href="url"</p>
+        <p> :[key]="url" > key 는 동적 전달인자</p>
+        <hr>
+        <h4>v-on 에서 v-는 @로 줄일 수 있따.</h4>
+        <p> v-on:click="doSomething" </p>
+        <p> @click="doSomething" </p>
+        
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>    
+    <script>
+        const shortSample = {
+            data(){
+                return {
+
+                }
+            }    
+        }
+
+        var app = Vue.createApp(shortSample);
+        app.mount(shortSample);
+        
+
+    </script>
+
+</body>
+</html>

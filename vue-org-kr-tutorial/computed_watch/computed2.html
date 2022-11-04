@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4>computed의 속성은 기본적으로 getter 이지만, 필요할 땐 setter도 제공할 수 있다.</h4>
+    <div id="app">
+        
+        <div>name : {{fullName}}</div>
+        <button @click="changeName">이름변경</button>
+        
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>   
+    <script>
+        var vm = Vue.createApp({
+            data(){
+                return {
+                    name : {
+                        firstName : 'poonghyeok',
+                        Lastname : 'Lee',
+                    }   
+                }
+                 
+            },
+            methods : {
+                changeName(){
+                    this.fullName = 'heungmin son';
+                }
+            }
+            ,
+            computed : {
+                fullName : {
+                    get(){
+                        return this.name.firstName + this.name.Lastname;
+                    },
+                    set(newValue){
+                        const names = newValue.split(' ');
+                        this.name.firstName = names[0];
+                        this.name.Lastname = names[1];
+                    }
+                }
+            }
+        }).mount('#app')
+
+    </script>
+</body>
+</html>

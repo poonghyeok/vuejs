@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h4>Computed</h4>
+    <h5>why</h5>
+    <ul>
+        <li>템플릿 내에 표현식을 넣으면 편리하긴 하나, 그렇다고 너무 많은 연산을 하기엔 코드가 길어져서 유지보수가 어렵다. </li>
+    </ul>
+
+    <hr>
+    <div id="app">
+        <p> 노래 : </p>
+        <span>{{ isAnySongs }}</span>
+        <hr>
+        <p>노래 추가하기</p>
+        <input type="text" v-model="inputText" placeholder="노래제목을 입력하세요."><button v-on:click="addSong()">추가하기</button>
+        <button v-on:click="initSongs()">곡 초기화하기</button>
+    </div>
+    <hr>
+
+    <h4>computed의 장점 : 캐싱 (Caching) </h4>
+    <p>반응형 종속성에 기반하여 캐시 된다.</p>
+    <p>종속 변수가 변하지 않는 이상 여러번 함수에 접근하더라도 그냥 캐싱 값 주지 다시 연산할 필요가 없음</p>
+
+    <script src="https://unpkg.com/vue@next"></script>   
+    <script>
+        var vm = Vue.createApp({
+            data(){
+                return {
+                    singer : {
+                        name : '권진아',
+                        songs : [   
+                            '운이좋았지',
+                            'Lonely Night',
+                            '끝'
+                        ]
+                    },
+                    inputText : '',
+                }
+            },
+            methods : {
+                addSong(){
+                    this.singer.songs.push(this.inputText);
+                    this.inputText = '';
+                },
+                initSongs(){
+                    this.singer.songs = [];
+                }
+            },
+            computed : {
+                isAnySongs(){
+                    return this.singer.songs.length > 0 ? "있음" : "없음";
+                }
+            }
+        }).mount('#app');
+
+    </script>
+</body>
+</html>

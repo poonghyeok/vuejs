@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h3>디바운싱과 쓰로틀링 Debouncing and Throttling</h3>
+    <h4>디바운싱(Debouncing) 이란? </h4>
+    <ul>
+        <li>동일한 함수가 짧은 시간 안에 여러번 반복되지 않도록 최종 함수만 호출하는 것.</li>
+    </ul>
+    <hr>
+    <h4>
+        쓰로틀링 ( Throttling ) 이란?
+    </h4>
+    <ul>
+        <li>마지막 함수가 호출된 이후 일정시간동안 함수가 호출되지 않도록 하는 것.</li>
+    </ul>
+    <hr>
+    <h4> 구현하기 </h4>
+    <p>full code 를 안주시네 ... </p>
+    <div id="app">
+
+    </div>
+
+
+    <script src="https://unpkg.com/vue@next"></script>   
+    <script src="https://unpkg.com/lodash@4.17.20/lodash.min.js"></script> 
+    <script>
+        var app = Vue.createApp({
+            methods : {
+                click : _.debounce(function(){
+
+                },500)
+            }
+        }).mount('#app');
+
+        
+    </script>
+</body>
+</html>
