@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        <p>v-for를 이용한 동적 옵션 렌더링</p>
+
+        <select name="" id="" v-model="selected">
+            <option value="" disabled>select one!</option>
+            <option v-for="option in options" value="option.value">{{option.text}}</option>
+        </select>
+        <hr>
+        <p>checkbox는 boolean 값 뿐만 아니라 string으로도 바인딩이 가능하다..!</p>
+        <p>단, form 전송에는 checkbox의 false 값은 전달되지 않으므로 false일 경우를 전달하고 싶다면 radio를 사용해야 한다.</p>
+        <input type="checkbox" v-model="chkVal" true-value="reactjs" false-value="vuejs">
+        <div>{{chkVal}}</div>
+        <hr>
+        <select name="" id="" v-model="objSelected">
+            <option :value="{ number : 123}">123</option>
+        </select>
+        <div>obj literal binding : {{objSelected.number}}</div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+    var app = Vue.createApp({
+        data(){
+            return {
+                selected : 'A',
+                options : [
+                    {text :  'one', value : 'A'},
+                    {text :  'two', value : 'B'},
+                    {text :  'three', value : 'C'},
+                ],
+                chkVal : '',
+                objSelected : {},
+            }
+        },
+
+    })
+
+    var vm = app.mount('#app');
+    </script>
+</body>
+</html>
