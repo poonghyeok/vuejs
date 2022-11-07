@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>todolist</title>
+</head>
+<body>
+    <div id="todo-list-example">
+        <form v-on:submit.prevent="addNewTodo">
+            <label for="new-todo">
+                <input type="text" v-model="newTodoNext" placeholder="enter a new todo item.">
+            </label>
+            <button>Add</button>
+        </form>
+        <ul>
+            <todo-item v-for="(todo,index) in todos" :key="todo.id" :title="todo.title" v-on:remove="todos.splice(index, 1)"></todo-item>
+        </ul>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        var app = Vue.createApp({
+            data(){
+                return {
+                    newTodoNext: '',
+                    todos: [
+                        {
+                            id: 1,
+                            title : '유니클로 거래',
+                        },
+                        {
+                            id: 2,
+                            title: '운영체제 강의',
+                        },
+                        {
+                            id: 3,
+                            title : '와인한잔',
+                        }
+                    ],
+                    nextTodoId : 4
+                };
+            },
+            methods : {
+                addNewTodo(){
+                    this.todos.push({id : this.nextTodoId, title : this.newTodoNext});
+                    this.newTodoNext = '';
+                    this.nextTodoId++;
+                }
+            }
+        })
+
+        app.component('todo-item',{
+            template : `
+                <li>
+                    {{title}}
+                    <button @click="$emit('remove')">Remove</button>
+                </li>
+            `,
+            props : ['title']
+        })
+
+        var vm = app.mount('#todo-list-example');
+    </script>
+</body>
+</html>

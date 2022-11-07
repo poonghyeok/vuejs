@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        <p>value값 돌리는 것 뿐만 아니라 두번째 인자로 key 값을 받을 수 있다...! </p>
+        <p>index도 받을 수 있지 않았나? 세번째 인자다..!</p>
+        <p>추가 : v-for를 돌릴 때 key는 항상 추가하는 것이 좋다.</p>
+        <ul id="v-for-object">
+            <li v-for="(value, name, idx) in obj">
+                {{idx}},{{name}} : {{value}}
+            </li>
+        </ul>
+    </div>
+        
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        var app = Vue.createApp({
+            data(){
+                return {
+                    obj : {
+                        singer : 'jina',
+                        song : 'was good luck',
+                        liek : '700k',
+                    }
+                }
+            }
+        })
+
+        var vm = app.mount('#app');
+    </script>
+</body>
+</html>

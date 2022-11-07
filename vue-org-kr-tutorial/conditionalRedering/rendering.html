@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V-if</title>
+</head>
+<body>
+    
+    <div id="app">
+        <h1 v-if="awesome">Vue is awesome!</h1>
+        <h1 v-else>else rendering</h1>
+
+        <template v-if="ok">
+            <h1>Title</h1>
+            <p>p1</p>
+            <p>p2</p>
+        </template>
+
+        <div>
+            <p v-if="char === 'a'">this is a </p>
+            <p v-else-if="char === 'b'">this is b </p>
+            <p v-else>this is nothing </p>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        var app = Vue.createApp({
+            data(){
+                return { 
+                    awesome : false,
+                    ok : true,
+                    char : 'b',
+                }
+            },
+            methods : {
+
+            }
+        })
+
+        var vm = app.mount('#app');
+    </script>
+</body>
+</html>

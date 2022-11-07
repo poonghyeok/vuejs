@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <p>
+            template에 v-for를 껴서 요소 블럭단위로 반복을 돌리 수 있다.
+        </p>
+        <ul>
+            <template v-for="item in items" :key="item.id">
+                <li> {{item.msg}}</li>
+                <li class="divider" role="presentation"></li>
+            </template>
+        </ul>
+        <hr>
+        <p>v-if 와 v-for를 같이 사용하는 것은 권장되지 않는다. v-if는 v-for보다 우선순위가 높다. 따라서 v-if는 v-for 범위에 접근할 수 없다.</p>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        var app = Vue.createApp({
+            data(){
+                return {
+                    items : [
+                        {id : 1, msg : 'hi'},
+                        {id : 2, msg : 'ladies'},
+                        {id : 3, msg : 'gentleman'},
+                    ]
+                }
+            },
+        })
+
+        var vm = app.mount('#app');
+    </script>
+</body>
+</html>
