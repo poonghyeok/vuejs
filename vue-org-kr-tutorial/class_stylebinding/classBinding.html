@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        
+        <div class="static" :class="{active : isActive, 'text-danger' : hasError}">
+            v-bind:class는 class 속성과도 공존할 수 있다. 기존 class에 class를 추가하는 방식 
+        </div>
+        
+        <div :class="classObject">
+            인라인일 필요 없이 그냥 인스턴스의 데이터로 만들어 놓고 사용해도 된다<div class=""></div>
+        </div>
+        
+        <div :class="computedClass">
+            computed 속성에 놓고 사용해도 된다.
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        var vm = Vue.createApp({
+            data(){
+                return{
+                    isActive : true,
+                    'text-danger' : false,
+                    error : false,
+                    classObject : {
+                        isActive : false,
+                        'text-danger' : true,
+                    }
+                }
+            },
+            computed : {
+               computedClass(){
+                    return {
+                        active : this.isActive && !this.error,
+                        'text-danger' : !this.isActive && this.error,
+                    }
+               }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <div :class="[isActive ? activeClass : '', errorClass]">
+            배열을 이용해서 여러 클래스 바인딩하기! 왜 안되지
+            배열이랑 객체형태라 무슨차이지
+        </div>
+
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        var vm = Vue.createApp({
+            data(){
+                return{
+                    isActive : false,
+                    activeClass : 'active',
+                    errorClass : 'text-danger',
+                }
+            }
+        }).mount('#app')
+    </script>
+</body>
+</html>
