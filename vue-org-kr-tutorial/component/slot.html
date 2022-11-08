@@ -4,24 +4,31 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>v-show</title>
+    <title>SLOT</title>
 </head>
 <body>
     <div id="app">
-        <p> v-if 와 v-show의 차이점인 if는 렌더링 조차 하지 않지만 show는 렌더링하지만 숨기는 것이다.</p>
-        <div v-if="isShow">did you see that?</div>
-        <p>단 v-show는 template 엘리먼트를 지원하지 않고 v-else와 함께 사용할 수 없다.</p>
+        <p>slot을 이용해 tetx를 떼어다가 컨텐츠로 제공할 수 있습니다!</p>
+        <alert-box>somthing bad happend!</alert-box>
     </div>
-    
-    
+
     <script src="https://unpkg.com/vue@next"></script>
     <script>
         var app = Vue.createApp({
             data(){
-                return{
-                    isShow : false,
+                return {
+                
                 }
             }
+        })
+
+        app.component('alert-box',{
+            template : `
+                <div>
+                    <b>Error!</b>
+                    <slot></slot>
+                </div>
+            `,
         })
 
         var vm = app.mount('#app');

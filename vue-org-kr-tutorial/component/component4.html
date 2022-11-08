@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> v-model custom </title>
+</head>
+<body>
+    <div id="app">
+        <!-- <input type="text" :value="messaage" @input="message = $event.target.value"/> -->
+        <custom-input  :model-value="message" @update:model-value="message = $event"></custom-input>
+
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        var app = Vue.createApp({
+            data(){
+                return {
+                    message : '',
+                }
+            }
+        })
+
+        app.component('custom-input',{
+            data(){
+
+            },
+            methods : {
+
+            },
+            props : ['modelValue'],
+            template : `
+                <input :value="modelValue" @input="changeInputMsg">
+            `,
+            methods : {
+                changeInputMsg(){
+                    this.$emit('update:modelValue', this.$event.target.value)
+                }
+            }
+        })
+
+        var vm = app.mount('#app');
+    </script>
+</body>
+</html>

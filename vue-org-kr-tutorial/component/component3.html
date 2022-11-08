@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>attr prop</title>
+</head>
+<body>
+    
+    <div id="app">
+        <div v-bind:style="{ fontSize : postFontSize + 'em' }">
+            <blog-spot v-for="item in items" :title="item.title" :key="item.id" @font-up="setFontSizeUp"></blog-spot>
+            <!-- 자식컴포넌트의 paramter가 담긴 emit을 받으려면 setFontSizeUp()으로 하면 안된다. 괄호를 생략해야 됨. -->
+            <!-- cusstom event 는 camel표기법이 아닌, kebab 표기법으로 쓴다.  -->
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        var app = Vue.createApp({
+            data(){
+                return{
+                    items : [
+                        { id : 1, title :  '아이폰'},
+                        { id : 2, title :  '아이패드'},
+                        { id : 3, title :  '아이맥'},
+                    ],
+                    postFontSize : 1,
+                }
+            },
+            methods : { 
+                setFontSizeUp(added){
+                    this.postFontSize = this.postFontSize + added;
+                }
+            }
+        })
+
+        app.component('blog-spot',{
+            template : `
+                <div class="blog-post">
+                    <h4>{{title}}</h4>
+                    <button @click="enlargeSize">Enlarge text</button>
+                </div>
+            `,
+            data(){
+                return {
+
+                }
+            },
+            props : ['title'],
+            methods : {
+                enlargeSize(){
+                    this.$emit('font-up', 0.5);
+                }
+            }
+        })
+
+        var vm = app.mount('#app');
+
+        
+    </script>
+</body>
+</html>
