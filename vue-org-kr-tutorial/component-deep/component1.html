@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id="app">
+        <p>컴포넌트 이름 짓기 규칙</p>
+        <ul>
+            <li>영어 소문자만 이용</li>
+            <li>하이픈 이용 ( 여러 단어를 하이픈으로로 연결해 사용 )</li>
+            <li>컴포넌트 이름은 그냥 kebab-case로 작성하자</li>
+        </ul>
+        <p>HTML 요소들과의 충돌방지를 위해서!</p>
+
+        <hr>
+        <p>props 유효성 검사</p>
+        <span>script에 쭉 적었다.</span>
+
+        <hr>
+        <p>Prop 대소문자 구분</p>
+        <ul>
+            <li>component 명 뿐만 아니라, prop 또한 대소문자를 구분하지 않기 때문에 kebab-case로 사용한다.</li>
+            <li>단, 문자열 리터럴을 사용할 때는 예외지만 실무에서 문자열 리터럴을 사용하는 경우는 거의 없으므로 그냥 prop지정할 때 kebaba-case로!</li>
+            <li>컴포넌트 내에서 prop을 받을 때는 kebab-case를 camelCase로 받아도 된다!</li>
+        </ul>
+        
+
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script>
+        var app = Vue.createApp({
+            props : {
+                // 기본 타입 체크 (null과 undefined는 모든 타입 유효성 검사 통과 가능)
+                propA : Number,
+                // 여러 가지 타입을 배열로서 지정할 수 있다.
+                propB : [String, Number],
+                // 필수 사항 여부도 지정할 수 있다. 자료형은 String 이여야하며 required 즉,, 무조건 있어야 한다. props로 String 형의 propC를 무조건 내려줘야 한다.
+                propC : {
+                    type : String,
+                    required : true,
+                },
+                // propD Number(숫자)형의 prop을 무조건 내려줘야 한다. 근데 안내려준다면 기본 값으로 100을 알아서 가지겠다.
+                propD : {
+                    type : Number,
+                    default : 100
+                },
+                // 객체(Object)형의 propE를 내려줘야한다. 안내려주면 기본 값으로 지정한 객체를 가질 수 있는데 객체나 배열의 기본 값은 단순한 key value가 아닌 function의 return으로 정의해야 한다.
+                propE : {
+                    type : Object,
+                    default : function(){
+                        return { message : 'hello' }
+                    }
+                },
+                propF : {
+                    validator : function(value){
+                        // propF로 들어온 값은 배열의 세 요소 중 하나와는 반드시 일치해야할 것은 validator 속성으로 지정할 수도 있다.
+                        // indexOf는 String에 대해서만 사용하는 줄 알았는데 javascript에서는 배열에 대해서 사용한다니
+                        return ['success', 'warning', 'danger'].indexOf(value) !== -1
+                    }
+                },
+                propG : {
+                    type : Function,
+                    default : function(){
+                        return 'Default function'
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
